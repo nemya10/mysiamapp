@@ -1,18 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate :[ AuthGuard]
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+
   {
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
@@ -22,12 +13,20 @@ const routes: Routes = [
     loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'forget-pass',
-    loadChildren: () => import('./auth/forget-pass/forget-pass.module').then( m => m.ForgetPassPageModule)
+    path: 'lool',
+    loadChildren: () => import('./auth/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
   {
-    path: '**',
-    loadChildren: () => import('./auth/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
+    path: 'forgetpass',
+    loadChildren: () => import('./auth/forgetpass/forgetpass.module').then( m => m.ForgetpassPageModule)
+  },
+  {
+    path: 'calendhome',
+    loadChildren: () => import('./calendhome/calendhome.module').then( m => m.CalendhomePageModule)
+  },
+  {
+    path: 'cal-modal',
+    loadChildren: () => import('./pages/cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
   },
 ];
 

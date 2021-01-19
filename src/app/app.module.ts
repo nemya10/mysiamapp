@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { FormsModule } from '@angular/forms';
-
+//Facebook
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -23,8 +24,6 @@ import { environment } from '../environments/environment';
 //services
 import { AuthService } from './services/auth.service';
 
-//guards
-import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -40,7 +39,8 @@ import { AuthGuard } from './guards/auth.guard';
     AngularFirestoreModule
   ],
   providers: [
-    AuthGuard,
+    
+    Facebook,
     AuthService,
     StatusBar,
     SplashScreen,

@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -15,6 +16,7 @@ export class RegisterPage implements OnInit {
   cpassword: string = ""
   passwordMatch: boolean;
   constructor(
+    private auth: AuthService,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
@@ -24,38 +26,14 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
   }
-  async register() {
-    if (this.name && this.email && this.password) {
-      const loading = await this.loadingCtrl.create({
-        message: 'loading..',
-        spinner: 'crescent',
-        showBackdrop: true
-      });
-      loading.present();
-      this.afAuth.createUserWithEmailAndPassword(this.email, this.password).then((data) => {
-        this.afs.collection('user').doc(data.user.uid).set({
-          'userId': data.user.uid,
-          'name': this.name,
-          'email': this.email,
-          'createAt': Date.now()
-        });
-        data.user.sendEmailVerification();
-      })
-      .then(()=>{
-        console.log('success');
-        loading.dismiss();
-      }).catch((error)=>{
-        loading.dismiss();
-        console.log(error.message);
-      })
-    }else{
-      console.log('please fill the form');
-    }
-
-      }
-
-      async toast(message,status)
-      {
+      async register() {
+        if (this.email && this.password && this.name) {
+          const res = await this.auth.register(this.name,this.email, this.password);
+        } else {
+          this.toast('please fill the form', 'danger');
+        }
+      }// end login
+      async toast(message,status) {
         const toast =await this.toastr.create({
           message:message,
           position : 'top',
@@ -65,15 +43,13 @@ export class RegisterPage implements OnInit {
         toast.present();
       }// end of toast
  
-      checkPassword()
-      {
+checkPassword(){
 if(this.password == this.cpassword){
   this.passwordMatch = true ;
 }else{
   this.passwordMatch = false ;
 }
-
-      }
+}
 
 
 

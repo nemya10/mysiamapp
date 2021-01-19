@@ -1,10 +1,17 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header> -->
+
 
   <ion-content padding class="animated fadeIn login auth-page">
+    <ion-card>
+      <ion-card-header>
+    <ion-card-title aria-live="style" style="text-align: center;" >MySiam</ion-card-title>
+  </ion-card-header>
+      
+
+     <!--  <ion-card-content>
+        <ion-img style="width: 50px; height: 50px;text-align:center;"  src="./assets/logo.png"></ion-img>
+        <h1>hello to MySiam </h1>
+      </ion-card-content> -->
+  </ion-card>
     <div class="theme-bg"></div>
     <div class="auth-content"></div>
 <!--       <ion-list>
@@ -23,32 +30,21 @@
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="key" item-start></ion-icon>
-          Password
+          Mot de passe
         </ion-label>
         <ion-input color="secondary" type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
-      <!-- <ion-item>
-        <ion-label position="floating">Password</ion-label>
-        <ion-input type="password" [(ngModel)]="password"></ion-input>
-      </ion-item> -->
-      
-<!--       </ion-list>
- -->      
- 
-
   <div style="padding: 20px;text-align:center;">
     <p text-right tappable (click)="forgot()" class="paz">
       <ion-text color="light">
         <strong>Forgot Pass?</strong>
       </ion-text>
     </p>
-<!--   <a (click)='forgot()'>Forget Password</a>
- -->
-<!--  <ion-button fill="solid" expand="block" color="dark" (click)="login()">Login</ion-button>
- --> <div>
+<div>
   <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="login()" tappable>
     <ion-icon name="log-in"></ion-icon>
-    Signin
+
+      Signin
   </ion-button>
 
   <p text-center>
@@ -82,9 +78,6 @@
 
 
   <br>
-
-
-
 
   <p>Don't have an account ? <a (click)="register()">Register Now!</a></p>
   </div>
